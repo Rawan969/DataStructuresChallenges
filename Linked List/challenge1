@@ -1,0 +1,40 @@
+class Node {
+  dynamic data;
+  Node? next;
+
+  Node(this.data);
+}
+
+class LinkedList {
+  Node? head;
+
+  void insert(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = head;
+    head = newNode;
+  }
+
+  void printListReverse() {
+    _printReverse(head);
+  }
+
+  void _printReverse(Node? node) {
+    if (node == null) {
+      return;
+    }
+    _printReverse(node.next);
+    print(node.data);
+  }
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.insert(1);
+  list.insert(2);
+  list.insert(3);
+  list.insert(4);
+  list.insert(5);
+
+  print('Linked List in Reverse Order:');
+  list.printListReverse();
+}
