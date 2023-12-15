@@ -1,0 +1,26 @@
+bool areParenthesesBalanced(String input) {
+  List<String> stack = [];
+
+  for (int i = 0; i < input.length; i++) {
+    if (input[i] == '(') {
+      stack.add('(');
+    } else if (input[i] == ')') {
+      if (stack.isEmpty || stack.last != '(') {
+        return false; // Unbalanced closing parenthesis without a matching opening parenthesis
+      }
+      stack.removeLast(); // Matching opening parenthesis found, remove it from the stack
+    }
+  }
+
+  return stack.isEmpty; // Check if all parentheses have been balanced
+}
+
+void main() {
+  String str1 = "((()))"; // Balanced parentheses
+  String str2 = "(()))"; // Unbalanced parentheses
+  String str3 = "((())"; // Unbalanced parentheses
+  
+  print(areParenthesesBalanced(str1)); // Output: true
+  print(areParenthesesBalanced(str2)); // Output: false
+  print(areParenthesesBalanced(str3)); // Output: false
+}
