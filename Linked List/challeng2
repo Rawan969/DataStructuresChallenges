@@ -1,0 +1,48 @@
+class Node {
+  dynamic data;
+  Node? next;
+
+  Node(this.data);
+}
+
+class LinkedList {
+  Node? head;
+
+  void insert(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = head;
+    head = newNode;
+  }
+
+  Node? findMiddleNode() {
+    if (head == null || head?.next == null) {
+      return head;
+    }
+
+    Node? slowPointer = head;
+    Node? fastPointer = head;
+
+    while (fastPointer != null && fastPointer.next != null) {
+      slowPointer = slowPointer?.next;
+      fastPointer = fastPointer.next?.next;
+    }
+
+    return slowPointer;
+  }
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.insert(1);
+  list.insert(2);
+  list.insert(3);
+  list.insert(4);
+  list.insert(5);
+
+  Node? middleNode = list.findMiddleNode();
+  if (middleNode != null) {
+    print('Middle Node: ${middleNode.data}');
+  } else {
+    print('The list is empty or has no middle node.');
+  }
+}
