@@ -1,0 +1,61 @@
+class Node {
+  dynamic data;
+  Node? next;
+
+  Node(this.data);
+}
+
+class LinkedList {
+  Node? head;
+
+  void insert(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = head;
+    head = newNode;
+  }
+
+  void removeElement(dynamic target) {
+    Node? current = head;
+    Node? prev = null;
+
+    while (current != null) {
+      if (current.data == target) {
+        if (prev == null) {
+          head = current.next; // Update head if target found at the beginning
+        } else {
+          prev.next = current.next; // Remove the node by skipping it
+        }
+      } else {
+        prev = current;
+      }
+      current = current.next; // Move to the next node
+    }
+  }
+
+  void displayList() {
+    Node? temp = head;
+    while (temp != null) {
+      print(temp.data);
+      temp = temp.next;
+    }
+  }
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.insert(1);
+  list.insert(2);
+  list.insert(3);
+  list.insert(2);
+  list.insert(4);
+  list.insert(2);
+  list.insert(5);
+
+  print('Original List:');
+  list.displayList();
+
+  list.removeElement(2);
+
+  print('\nList after removing occurrences of 2:');
+  list.displayList();
+}
