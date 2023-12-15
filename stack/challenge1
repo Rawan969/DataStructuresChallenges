@@ -1,0 +1,23 @@
+void printListReversed(List<dynamic> inputList) {
+  if (inputList.isEmpty) {
+    print('The list is empty.');
+    return;
+  }
+
+  // Create a stack to store the elements
+  List<dynamic> stack = [];
+
+  // Push elements from the inputList into the stack
+  stack.addAll(inputList);
+
+  // Pop and print elements from the stack
+  print('List in reverse order:');
+  while (stack.isNotEmpty) {
+    print(stack.removeLast());
+  }
+}
+
+void main() {
+  List<int> myList = [1, 2, 3, 4, 5];
+  printListReversed(myList);
+}
